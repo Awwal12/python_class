@@ -12,14 +12,40 @@ class Employee:
 
 
 class Manager(Employee):
-    def __init__(self, name, salary, bonus):
-        Employee.__init__(name, salary)
+    def __init__(self, name, salary, bonus=0.1):
+        Employee.__init__(self, name, salary)
         self.bonus = bonus
 
-    def get_bonus(self):
-        self.bonus = self.salary * 0.1
-        return self.bonus
+    def get_salary(self):
+        self.val = (self.salary * self.bonus)
+        self.salary += self.val
+        return self.salary
+
+
+class Engineer(Employee):
+    def __init__(self, name, salary, bonus=0.05):
+        Employee.__init__(self, name, salary)
+        self.bonus = bonus
 
     def get_salary(self):
-        self.salary += self.bonus
+        self.val = (self.salary * self.bonus)
+        self.salary += self.val
         return self.salary
+
+
+def payroll(staffs):
+    name_salary = {}
+    for staff in staffs:
+        if staffs[staff]["occupation"] == "engineer":
+            profile = Engineer(staff, staffs[staff]["salary"])
+        elif staffs[staff]["occupation"] == "manager":
+            profile = Manager(staff, staffs[staff]["salary"])
+        name_salary[profile.name] = int(profile.get_salary())
+    print(name_salary)
+
+
+payroll({
+    "james": {"salary": 5000, "occupation": "engineer"},
+    "john": {"salary": 6000, "occupation": "manager"},
+    "mary": {"salary": 5000, "occupation": "manager"}
+})

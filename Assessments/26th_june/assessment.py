@@ -1,3 +1,24 @@
+
+'''
+Project Description: Create a bank account management system that allows users to create and manage 
+their bank accounts. The system should allów users to perform basic banking operations
+like depositing and withdrawing money, checking balance, and viewing transaction history.
+
+Steps to Implement:
+
+1. Create a BankAcount class that will have the following attributes: account number, account holder name, 
+account type (Savings or Checking), and balance.
+2. Define a constructor method that will initialize the account attributes when a new object is created.
+3. Define methods for depositing and withdrawing money from the account. These methods should update 
+the balance attribute accordingly.
+4. Define a method for checking the current balance of the account.
+5. Define a method for displaying the transaction history of the account.
+6. Create a main function that will allow users to create new accounts and perform banking 
+operations on their accounts.
+
+'''
+
+
 class BankAccount:
     def __init__(self, accNum, accName, accType):
         self.accNum = accNum
@@ -38,10 +59,4 @@ accounts = []
 
 def main():
     while True:
-        users_resp = input(
-            "Select from the options \n Select 1 to create account \n select 2 to deposit \n select 3 to withdraw \n select 4 to  ")
-
-
-john = BankAccount(1012, 'dio', 'savings')
-john.deposit()
-john.checkBal()
+        response = input

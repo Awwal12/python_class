@@ -30,33 +30,89 @@ class BankAccount:
     def deposit(self):
         self.val = int(input('How much are depositing: '))
         self.balance += self.val
-        print(f'You just deposited {self.val} ')
         self.transcHistory.append(f'You deposited {self.val} today')
+        return f'You just deposited {self.val} NAIRA '
 
     def withdraw(self):
         print('How much do u want to withdraw')
         self.val = int(input())
         if self.val > self.balance:
-            print('Insufficient Funds')
+            return 'Insufficient Funds'
         else:
             self.balance -= self.val
-            print(f'You just withdrew: {self.balance} NAIRA')
             self.transcHistory.append(f'You withdrew {self.val} today')
+            return f'You just withdrew: {self.val} NAIRA'
 
     def checkBal(self):
         # print("What is your acct name n number: ")
         if self.accName and self.accNum:
-            print(f'Your balance is: {self.balance} NAIRA')
+            return f'Your balance is: {self.balance} NAIRA'
         else:
-            print(f'invalid credentials')
+            return f'invalid credentials'
 
-    def transHisto(self):
-        print(self.transcHistory)
+    def display_transaction_history(self):
+        for transaction in self.transcHistory:
+            return transaction
 
 
 accounts = []
 
 
 def main():
+    accounts = []
+
     while True:
-        response = input
+        print("Bank Management System")
+        print("1. Create a new bank account")
+        print("2. Deposit funds to your account")
+        print("3. Withdraw funds from your account")
+        print("4. Check your balance")
+        print("5. Display transaction history")
+        response = input("")
+
+        if response == "1":
+            name = input("Enter your name: ")
+            account_type = input("Enter account type (Savings/Checking): ")
+            account_number = input("Enter account number: ")
+            new_account = BankAccount(account_number, name, account_type)
+            accounts.append(new_account)
+            print("Account created successfully.")
+
+        elif response == "2":
+            name = input("Enter your name: ")
+            for account in accounts:
+                if account.accName == name:
+                    print(account.deposit())
+                    break
+            else:
+                print("Can't find your account.")
+
+        elif response == "3":
+            name = input("Enter your name: ")
+            for account in accounts:
+                if account.accName == name:
+                    print(account.withdraw())
+                    break
+            else:
+                print("Can't find your account.")
+
+        elif response == "4":
+            name = input("Enter your name: ")
+            for account in accounts:
+                if account.accName == name:
+                    print(account.checkBal())
+                    break
+            else:
+                print("Can't find your account.")
+
+        elif response == "5":
+            name = input("Enter your name: ")
+            for account in accounts:
+                if account.accName == name:
+                    print(account.display_transaction_history())
+                    break
+            else:
+                print("Can't find your account.")
+
+
+main()

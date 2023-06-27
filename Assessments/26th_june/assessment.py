@@ -25,13 +25,12 @@ class BankAccount:
         self.accName = accName
         self.accType = accType
         self.balance = 0
-        self.transcHistory = []
 
     def deposit(self):
         self.val = int(input('How much are depositing: '))
         self.balance += self.val
-        self.transcHistory.append(f'You deposited {self.val} today')
-        return f'You just deposited {self.val} NAIRA '
+        self.addTransction(
+            f'{self.accName} just deposited {self.val} NAIRA \n')
 
     def withdraw(self):
         print('How much do u want to withdraw')
@@ -40,8 +39,8 @@ class BankAccount:
             return 'Insufficient Funds'
         else:
             self.balance -= self.val
-            self.transcHistory.append(f'You withdrew {self.val} today')
-            return f'You just withdrew: {self.val} NAIRA'
+            self.addTransction(
+                f'{self.accName} just withdrew {self.val} NAIRA \n')
 
     def checkBal(self):
         # print("What is your acct name n number: ")
@@ -51,8 +50,13 @@ class BankAccount:
             return f'invalid credentials'
 
     def display_transaction_history(self):
-        for transaction in self.transcHistory:
-            return transaction
+        with open(f'transcHis.txt', "r") as file:
+            result = file.read()
+        return result
+
+    def addTransction(self, message):
+        with open('transcHis.txt', 'a') as file:
+            file.write(message)
 
 
 accounts = []
@@ -82,7 +86,7 @@ def main():
             name = input("Enter your name: ")
             for account in accounts:
                 if account.accName == name:
-                    print(account.deposit())
+                    account.deposit()
                     break
             else:
                 print("Can't find your account.")
@@ -91,7 +95,7 @@ def main():
             name = input("Enter your name: ")
             for account in accounts:
                 if account.accName == name:
-                    print(account.withdraw())
+                    account.withdraw()
                     break
             else:
                 print("Can't find your account.")

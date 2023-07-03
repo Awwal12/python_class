@@ -16,3 +16,5 @@ def generatePassword(length):
 
 pss = generatePassword(2)
 print(pss)
+with open(f'secretKey.txt', "w") as file:
+    file.write(generatePassword(10))

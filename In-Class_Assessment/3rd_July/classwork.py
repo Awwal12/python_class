@@ -11,3 +11,13 @@
 # 40 – 60 = C
 # 60 – 70 = B
 # 70  - 100= A
+class Student:
+    def __init__(self, name, age, score):
+        self.name = name
+        self.age = age
+        self.score = score
+
+    def getNames(self):
+        with open('name.txt', "r") as f:
+            names = list(f.readlines())
+            return names

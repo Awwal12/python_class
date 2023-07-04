@@ -15,25 +15,34 @@ import random as r
 
 
 class Student:
-    def __init__(self, name, age, score):
+    def __init__(self, name, score):
         self.name = name
-        self.age = age
         self.score = score
 
-    def getNames(self):
-        with open('name.txt', "r") as f:
-            names = list(f.readlines())
-            return names
-
     def grade(self):
-        self.score = r.randrange(20, 100)
-        if self.score == 100 and 70:
+        if self.score >= 70:
             print("A")
-        elif self.score == 60 and 69:
+        elif self.score >= 60:
             print("B")
-        elif self.score == 40 and 59:
+        elif self.score >= 50:
             print("C")
-        elif self.score == 30 and 49:
+        elif self.score >= 30:
             print("E")
         elif self.score <= 29:
             print("F")
+
+
+def getNames(filename):
+    with open(filename, "r") as f:
+        names = f.readlines()
+    grades = []
+    for student in names:
+        grades.append(Student(student.split(',')[0], int(
+            student.split(',')[1].strip('\n').strip(' '))))
+
+    return grades
+
+
+for grade in getNames('name.txt'):
+    grade.grade()
+    # print(grade)

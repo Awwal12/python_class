@@ -1,10 +1,10 @@
-becky
-latif
-sara
-anita
-ish
-lopez
-hadiza
-dio
-josuke
-ola
+becky, 25
+latif, 34
+sara, 87
+anita, 85
+ish, 65
+lopez, 76
+hadiza, 55
+dio, 76
+josuke, 44
+ola, 53

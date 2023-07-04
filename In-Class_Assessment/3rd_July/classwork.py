@@ -11,6 +11,9 @@
 # 40 – 60 = C
 # 60 – 70 = B
 # 70  - 100= A
+import random as r
+
+
 class Student:
     def __init__(self, name, age, score):
         self.name = name
@@ -21,3 +24,16 @@ class Student:
         with open('name.txt', "r") as f:
             names = list(f.readlines())
             return names
+
+    def grade(self):
+        self.score = r.randrange(20, 100)
+        if self.score == 100 and 70:
+            print("A")
+        elif self.score == 60 and 69:
+            print("B")
+        elif self.score == 40 and 59:
+            print("C")
+        elif self.score == 30 and 49:
+            print("E")
+        elif self.score <= 29:
+            print("F")

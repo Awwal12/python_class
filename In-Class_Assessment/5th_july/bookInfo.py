@@ -27,6 +27,17 @@ class Book:
         with open("books.txt", "r+") as f:
             booklets = f.readlines()
         for book in booklets:
-            books.append(Book(book.split(',')[0], book.split(',')[1].strip(
-                ' '), int(book.split(',')[2].strip(' ').strip('\n'))))
+            books.append([book.split(',')[0], book.split(',')[1].strip(
+                ' '), int(book.split(',')[2].strip(' ').strip('\n'))])
         return books
+
+    def printBook(self):
+        books = self.displayBook()
+
+        for book in books:
+            print(f"{book[0]} by {book[1]} (ISBN: {book[2]})")
+            # print(book)
+
+
+lib1 = Book('bfbd', 'ncnnc', 344432)
+lib1.printBook()

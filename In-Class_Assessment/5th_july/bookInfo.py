@@ -23,4 +23,10 @@ class Book:
         self.isbn = ISBN
 
     def displayBook(self):
-        pass
+        books = []
+        with open("books.txt", "r+") as f:
+            booklets = f.readlines()
+        for book in booklets:
+            books.append(Book(book.split(',')[0], book.split(',')[1].strip(
+                ' '), int(book.split(',')[2].strip(' ').strip('\n'))))
+        return books

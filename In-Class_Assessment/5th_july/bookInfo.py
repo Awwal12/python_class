@@ -17,10 +17,6 @@
 # 1984 by George Orwell (ISBN: 9780451524935)
 # Animal Farm by George Orwell (ISBN: 9780451526342)
 class Book:
-    def __init__(self, title, author, ISBN):
-        self.title = title
-        self.author = author
-        self.isbn = ISBN
 
     def displayBook(self):
         books = []
@@ -39,5 +35,5 @@ class Book:
             # print(book)
 
 
-lib1 = Book('bfbd', 'ncnnc', 344432)
+lib1 = Book()
 lib1.printBook()

@@ -16,24 +16,45 @@
 # To Kill a Mockingbird by Harper Lee (ISBN: 9780446310789)
 # 1984 by George Orwell (ISBN: 9780451524935)
 # Animal Farm by George Orwell (ISBN: 9780451526342)
-class Book:
+# class Book:
 
-    def displayBook(self):
-        books = []
-        with open("books.txt", "r+") as f:
-            booklets = f.readlines()
-        for book in booklets:
-            books.append([book.split(',')[0], book.split(',')[1].strip(
-                ' '), int(book.split(',')[2].strip(' ').strip('\n'))])
-        return books
+#     def displayBook(self):
+#         books = []
+#         with open("books.txt", "r+") as f:
+#             booklets = f.readlines()
+#         for book in booklets:
+#             books.append([book.split(',')[0], book.split(',')[1].strip(
+#                 ' '), int(book.split(',')[2].strip(' ').strip('\n'))])
+#         return books
+
+#     def printBook(self):
+#         books = self.displayBook()
+
+#         for book in books:
+#             print(f"{book[0]} by {book[1]} (ISBN: {book[2]})")
+#             # print(book)
+
+
+# lib1 = Book()
+# lib1.printBook()
+class Book:
+    def __init__(self, title, author, ISBN):
+        self.title = title
+        self.author = author
+        self.isbn = ISBN
 
     def printBook(self):
-        books = self.displayBook()
-
-        for book in books:
-            print(f"{book[0]} by {book[1]} (ISBN: {book[2]})")
-            # print(book)
+        return f'{self.title} by {self.author} (ISBN: {self.isbn})'
 
 
-lib1 = Book()
-lib1.printBook()
+booklets = []
+with open("books.txt", 'r+') as f:
+    result = f.readlines()
+    for book in result:
+        spilt_result = book.split(',')
+        title = spilt_result[0]
+        author = spilt_result[1].strip(' ')
+        isbn = spilt_result[2].strip(' ').strip('\n')
+        booklets.append(Book(title, author, isbn))
+
+print(booklets)

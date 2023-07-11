@@ -39,6 +39,8 @@ class Attendance:
             return 'No group added to attendance'
 
     def display_all_groups(self):
+        """function that displays a string of all items in group
+        """
         for group in self.groups:
             print(group)
 

@@ -7,6 +7,9 @@ response = requests.get(URL)
 contents = BS(response.text, 'html.parser')
 container = contents.find('div', class_='tab-pane show active')
 items = container.find_all('div', class_='item')
+
 for item in items:
     name = item.find('h3', class_='movie-name')
-    print(name.text)
+    names = name.text
+    with open('movie_list.txt', 'a', encoding=None) as f:
+        f.writelines(f'{names}\n')

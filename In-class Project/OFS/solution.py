@@ -5,16 +5,17 @@ class Order:
     """_summary_
     """
 
-    def __init__(self, order_id, items, status):
+    def __init__(self, order_id, items):
         self.order_id = order_id
         self.items = items
-        self.status = status
+        self.status = 'pending'
 
 
 class OrderFulfillmentSystem:
     def __init__(self) -> None:
         self.orders = []
-    def place_order(self, order : Order) -> str:
+
+    def place_order(self, order: Order) -> str:
         self.orders.append(order)
         return order.order_id
 
@@ -23,13 +24,37 @@ class OrderFulfillmentSystem:
             if x.order_id == order_id:
                 x.status = 'processing'
                 break
-            else:
-                
+        else:
+            return f'Missing or Wrrong ID'
+
     def ship_order(self, order_id: str) -> None:
-        
+        for x in self.orders:
+            if x.order_id == order_id:
+                x.status = 'shipped'
+                break
+        else:
+            return f'Missing or Wrrong ID'
 
     def deliver_order(self, order_id: str) -> None:
-        pass
+        for x in self.orders:
+            if x.order_id == order_id:
+                x.status = 'delivered'
+                break
+        else:
+            return f'Missing or Wrrong ID'
 
     def get_order_status(self, order_id: str) -> str:
-        pass
+        for x in self.orders:
+            if x.order_id == order_id:
+                print(x.status)
+        else:
+            return f'missing or wrong id'
+
+
+order1 = Order(r.randint(100000, 900000), ['egg', 'apple', 'fish'])
+order_system = OrderFulfillmentSystem()
+order1_id = order_system.place_order(order1)
+order_system.process_order(order1_id)
+order_system.get_order_status(order1_id)
+order_system.ship_order(order1_id)
+order_system.get_order_status(order1_id)

@@ -38,17 +38,24 @@
 # lib1 = Book()
 # lib1.printBook()
 class Book:
-    def __init__(self, title, author, ISBN):
+    """class describing a book
+    """
+
+    def __init__(self, title, author, isbn):
         self.title = title
         self.author = author
-        self.isbn = ISBN
+        self.isbn = isbn
 
-    def printBook(self):
-        return f'{self.title} by {self.author} (ISBN: {self.isbn})'
+    def print_book(self):
+        """_summary_
+
+        :return: _description_
+        """
+        return f'{self.title} by {self.author} (isbn: {self.isbn})'
 
 
 booklets = []
-with open("books.txt", 'r+') as f:
+with open("books.txt", 'r+', encoding=str) as f:
     result = f.readlines()
     for book in result:
         spilt_result = book.split(',')

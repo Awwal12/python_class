@@ -12,14 +12,21 @@ class Order:
 
 
 class OrderFulfillmentSystem:
-    def place_order(self, items: list[str]) -> str:
-        return f' {items} and {order_id}'
+    def __init__(self) -> None:
+        self.orders = []
+    def place_order(self, order : Order) -> str:
+        self.orders.append(order)
+        return order.order_id
 
-    def process_order(self, order_id: str) -> None:
-        pass
-
+    def process_order(self, order_id: Order) -> None:
+        for x in self.orders:
+            if x.order_id == order_id:
+                x.status = 'processing'
+                break
+            else:
+                
     def ship_order(self, order_id: str) -> None:
-        pass
+        
 
     def deliver_order(self, order_id: str) -> None:
         pass

@@ -21,37 +21,50 @@ class OrderFulfillmentSystem:
         self.orders = []
 
     def place_order(self, order: Order) -> str:
+        """method for placing order 
+
+        :param order: of Class Order it gets the order object created 
+        :return: it returns an int 
+        """
         self.orders.append(order)
         return order.order_id
 
     def process_order(self, order_id: Order) -> None:
-        for x in self.orders:
-            if x.order_id == order_id:
-                x.status = 'processing'
+        """it prints 'processing' if condition is successful else prints something else
+        """
+        for i in self.orders:
+            if i.order_id == order_id:
+                i.status = 'processing'
                 break
         else:
             print('missing or wrong id')
 
     def ship_order(self, order_id: str) -> None:
-        for x in self.orders:
-            if x.order_id == order_id:
-                x.status = 'shipped'
+        """it prints 'shipped' if condition is successful else prints something else
+        """
+        for i in self.orders:
+            if i.order_id == order_id:
+                i.status = 'shipped'
                 break
         else:
             print('missing or wrong id')
 
     def deliver_order(self, order_id: str) -> None:
-        for x in self.orders:
-            if x.order_id == order_id:
-                x.status = 'delivered'
+        """it prints 'delivered' if condition is successful else prints something else
+        """
+        for i in self.orders:
+            if i.order_id == order_id:
+                i.status = 'delivered'
                 break
         else:
             print('missing or wrong id')
 
     def get_order_status(self, order_id: str) -> str:
-        for x in self.orders:
-            if x.order_id == order_id:
-                print(x.status)
+        """it prints the current status of the order object.
+        """
+        for i in self.orders:
+            if i.order_id == order_id:
+                print(i.status)
                 break
         else:
             print('missing or wrong id')

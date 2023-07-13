@@ -1,8 +1,10 @@
 import random as r
+"""importing random package to use for generating IDs"""
+# :return: int
 
 
 class Order:
-    """_summary_
+    """class order has 2 arguments to take that creates the object
     """
 
     def __init__(self, order_id, items):
@@ -25,7 +27,7 @@ class OrderFulfillmentSystem:
                 x.status = 'processing'
                 break
         else:
-            return f'Missing or Wrrong ID'
+            print('missing or wrong id')
 
     def ship_order(self, order_id: str) -> None:
         for x in self.orders:
@@ -33,7 +35,7 @@ class OrderFulfillmentSystem:
                 x.status = 'shipped'
                 break
         else:
-            return f'Missing or Wrrong ID'
+            print('missing or wrong id')
 
     def deliver_order(self, order_id: str) -> None:
         for x in self.orders:
@@ -41,14 +43,15 @@ class OrderFulfillmentSystem:
                 x.status = 'delivered'
                 break
         else:
-            return f'Missing or Wrrong ID'
+            print('missing or wrong id')
 
     def get_order_status(self, order_id: str) -> str:
         for x in self.orders:
             if x.order_id == order_id:
                 print(x.status)
+                break
         else:
-            return f'missing or wrong id'
+            print('missing or wrong id')
 
 
 order1 = Order(r.randint(100000, 900000), ['egg', 'apple', 'fish'])

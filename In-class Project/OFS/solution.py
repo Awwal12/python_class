@@ -14,6 +14,9 @@ class Order:
 
 
 class OrderFulfillmentSystem:
+    """Class where the logic happens has no arguments to be passed in however it has 5 methods 
+    """
+
     def __init__(self) -> None:
         self.orders = []
 

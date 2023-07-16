@@ -39,8 +39,6 @@ class Attendance:
             return 'No group added to attendance'
 
     def display_all_groups(self):
-        """function that displays a string of all items in group
-        """
         for group in self.groups:
             print(group)
 
@@ -58,6 +56,6 @@ if __name__ == '__main__':
     user2 = User('James', 123456)
     response = attendance.add_user_to_group(group1, user1)
     response2 = attendance.add_user_to_group(group1, user2)
-    response2 = attendance.add_user_to_group(group2, user2)
+    attendance.display_all_groups()
     print(response)
     print(response2)

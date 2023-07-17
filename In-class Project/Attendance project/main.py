@@ -1,3 +1,9 @@
+from datetime import datetime
+current_time = datetime.now()
+time_stamp = current_time.timestamp()
+datetime.fromtimestamp(time_stamp, tz=None)
+
+
 class User:
     def __init__(self, name, number) -> None:
         self.name = name
@@ -32,9 +38,10 @@ class Attendance:
             for i in self.groups:
                 if i == group:
                     i.add_user(user)
-                    return f"{user} has been added to {group}"
-            else:
-                return 'Could not find group'
+                    # date_time = datetime.fromtimestamp(time_stamp)
+                    # str_date_time = date_time.strftime("%d-%m-%Y,%H:%M:%S")
+                    date_time = datetime.fromtimestamp(time_stamp)
+                    print(f"{user} has been added to {group}, at {date_time}")
         else:
             return 'No group added to attendance'
 
@@ -56,6 +63,5 @@ if __name__ == '__main__':
     user2 = User('James', 123456)
     response = attendance.add_user_to_group(group1, user1)
     response2 = attendance.add_user_to_group(group1, user2)
-    attendance.display_all_groups()
     print(response)
     print(response2)

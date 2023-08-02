@@ -61,9 +61,9 @@ class DB:
             f'UPDATE {self.studentT} SET phone_number = "{P_NUM}" WHERE student_id = {ID} ')
         self.__db.commit()
 
-    def mark_attendance(self, id):
+    def mark_attendance(self, id: int):
         self.__cursor.execute(
-            f'INSERT INTO {self.presentT} (student_id) VALUE (%s)', (id)
+            f'INSERT INTO {self.presentT} (student_id) VALUE (%s)', (id,)
         )
         self.__db.commit()
 
@@ -113,13 +113,24 @@ class AttendanceSystem:
         else:
             self.db.mark_attendance(id)
 
+    def check_attendance_punctuality(self, id):
+        for values in self.db.get_all_data('present'):
+            if (values[1]).date() == (datetime.datetime.now()).date():
+                if values[2] == id:
+                    print('early')
+
+    def add_attendance(self, id):
+        self.db.mark_attendance(id)
+
 
 student1 = Student('John', 'James', '234566')
 student2 = Student('James', 'John', '234566')
+student4 = Student('Mohammed', 'ben', '6789124566')
 
 manager = AttendanceSystem()
 # manager.add_student(student1)
-# manager.add_student(student2)
+# manager.add_student(student4)
+manager.check_attendance_punctuality(1)
 # manager.update_phone_number(1, "090999999999")
 # print(manager.display_all_students())
-manager.mark_attendance(1)
+# manager.add_attendance(2)

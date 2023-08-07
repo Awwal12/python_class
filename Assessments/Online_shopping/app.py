@@ -54,3 +54,8 @@ class DB:
         self.__cursor.execute(
             f'DELETE FROM {self.productT} WHERE product_id = {id}')
         self.__db.commit()
+
+    def update_product(self, product: Product):
+        self.__cursor.execute(
+            f'UPDATE {self.productT} SET name = {product.name}, category = {product.category}, price = {product.price}, stock_quantity = {product.stock_quantity} WHERE product_id = {product.product_id}')
+        self.__db.commit()

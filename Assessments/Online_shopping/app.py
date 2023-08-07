@@ -9,21 +9,6 @@ password = os.environ.get('password')
 host = os.environ.get('host')
 
 
-class DB:
-    def __init__(self):
-        self.__db = sql.connect(
-            host=host,
-            password=password,
-            user=user,
-            database='supermart'
-        )
-        self.productT = 'product'
-        self.customerT = 'customer'
-        self.orderT = 'orders'
-        self.orderItem = 'order_item'
-        self.__cursor = self.__db.cursor()
-
-
 class Product:
     def __init__(self, product_id, name, category, price, stock_quantity):
         self.product_id = product_id
@@ -44,3 +29,23 @@ class Customer:
 class Order:
     def __init__(self) -> None:
         pass
+
+
+class DB:
+    def __init__(self):
+        self.__db = sql.connect(
+            host=host,
+            password=password,
+            user=user,
+            database='supermart'
+        )
+        self.productT = 'product'
+        self.customerT = 'customer'
+        self.orderT = 'orders'
+        self.orderItem = 'order_item'
+        self.__cursor = self.__db.cursor()
+
+    def add_new_product(self, product: Product):
+        self.__cursor.execute(
+            f'INSERT INTO {self.productT} (name, category,price, stock_quantity) VALUES (%s, %s,%s,%s)', (product.product_id, product.name, product.category, product.stock_quantity))
+        self.__db.commit()

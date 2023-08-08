@@ -59,3 +59,12 @@ class DB:
         self.__cursor.execute(
             f'UPDATE {self.productT} SET name = {product.name}, category = {product.category}, price = {product.price}, stock_quantity = {product.stock_quantity} WHERE product_id = {product.product_id}')
         self.__db.commit()
+
+    def get_all_data(self, tableName):
+        self.__cursor.execute(f'SELECT * FROM {tableName}')
+        return self.__cursor.fetchall()
+
+    def new_customer(self, customer: Customer):
+        self.__cursor.execute(f'INSERT INTO {self.customerT} (name,email,address) VALUES (%s,%s,%s)', (
+            customer.name, customer.email, customer.address))
+        self.__db.commit()

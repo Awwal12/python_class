@@ -78,3 +78,9 @@ class DB:
         # customerid and total_amount let the func take an argument that can return whats needed and dont forget to add the last bracket #)
         self.__cursor.execute(
             f'INSERT INTO {self.orderT} (cust_id,total_amount) VALUES(%s,%s)', )
+        self.__db.commit()
+
+    def get_order(self, tableName, id):
+        self.__cursor.execute(
+            f'SELECT * FROM {tableName} WHERE cust_id = {id}')
+        print(self.__cursor.fetchall())

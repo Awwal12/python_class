@@ -73,3 +73,8 @@ class DB:
         self.__cursor.execute(
             f'UPDATE {self.customerT} SET name = {customer.name}, email = {customer.email}, address = {customer.address} WHERE cust_id = {customer.customer_id}')
         self.__db.commit()
+
+    def place_order(self):
+        # customerid and total_amount let the func take an argument that can return whats needed and dont forget to add the last bracket #)
+        self.__cursor.execute(
+            f'INSERT INTO {self.orderT} (cust_id,total_amount) VALUES(%s,%s)', )

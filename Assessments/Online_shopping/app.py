@@ -68,3 +68,8 @@ class DB:
         self.__cursor.execute(f'INSERT INTO {self.customerT} (name,email,address) VALUES (%s,%s,%s)', (
             customer.name, customer.email, customer.address))
         self.__db.commit()
+
+    def update_customer(self, customer: Customer):
+        self.__cursor.execute(
+            f'UPDATE {self.customerT} SET name = {customer.name}, email = {customer.email}, address = {customer.address} WHERE cust_id = {customer.customer_id}')
+        self.__db.commit()
